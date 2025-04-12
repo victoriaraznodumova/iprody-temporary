@@ -14,31 +14,31 @@ public class Main {
         }
         System.out.println(Arrays.toString(numbers));
 
-        System.out.println("What to do? Enter: ");
+        while(true) {
+            System.out.println("What to do? Enter: ");
 
-        for (var userCode : UserCode.values()) {
-            System.out.println((userCode.ordinal() + 1) + " to " + userCode.getDescription());
-        }
+            for (var userCode : UserCode.values()) {
+                System.out.println(userCode.getCode() + " to " + userCode.getDescription());
+            }
 //        System.out.println("2 to get an average value");
 //        System.out.println("3 to sort array");
 
-        int code = new Scanner(System.in).nextInt();
-        UserCode userCode = UserCode.valueOf(code - 1);
-        switch (userCode){
-            case SUM:
-                System.out.println("Sum = " + sumArray(numbers));
-                break;
-            case AVERAGE:
-                System.out.println("Average = " + averageArray(numbers));
-                break;
-            case SORT:
-                System.out.println("Sor = " + Arrays.toString(sort(numbers)));
-                break;
+            int code = new Scanner(System.in).nextInt();
+            UserCode userCode = UserCode.valueOf(code);
+            switch (userCode) {
+                case SUM:
+                    System.out.println("Sum = " + sumArray(numbers));
+                    break;
+                case AVERAGE:
+                    System.out.println("Average = " + averageArray(numbers));
+                    break;
+                case SORT:
+                    System.out.println("Sorted = " + Arrays.toString(sort(numbers)));
+                    break;
+                case EXIT:
+                    return;
+            }
         }
-
-
-
-
     }
 
 

@@ -1,11 +1,18 @@
 package enums;
 
+import java.util.Arrays;
+
 public enum UserCode {
-    SUM("sum array"), AVERAGE("get an average value"), SORT("sort array");
+    SUM(1, "sum array"),
+    AVERAGE(2, "get an average value"),
+    SORT(3, "sort array"),
+    EXIT(4, "exit");
 
     private final String description;
+    private final int code;
 
-    UserCode(String description) {
+    UserCode(int code, String description) {
+        this.code = code;
         this.description = description;
     }
 
@@ -13,15 +20,21 @@ public enum UserCode {
         return description;
     }
 
-    public static UserCode valueOf(int index){
-        UserCode[] values = values();
-        if (index < 0 || index >= values.length){
-            throw new RuntimeException("Error! Allowed codes from " + 1 + " to " + values.length);
-        }
-        else{
-            return values[index];
-        }
+    public int getCode() {
+        return code;
     }
 
-
+    public static UserCode valueOf(int code){
+        UserCode[] values = values();
+        for (UserCode userCode: values) {
+            if (userCode.code == code){
+                return userCode;
+            }
+        }
+        int[] codes = new int[values.length];
+        for(int i = 0; i < codes.length; i++) {
+            codes[i] = values[i].code;
+        }
+        throw new RuntimeException("Error! Allowed codes: " + Arrays.toString(values));
+    }
 }
